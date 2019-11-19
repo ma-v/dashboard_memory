@@ -57,8 +57,8 @@
   </div>
   <div class="monthly">
     <h1>Revenue per Month</h1>
-    <% if @country %>
-      <%= column_chart Bundle.joins(:order).group_by_month(:order_date, format: "%b").sum(:price) %>
+    <% if @country && @country != "All" %>
+      <%= column_chart @bundle.joins(:order).group_by_month("orders.order_date", format: "%b").sum(:price) %>
     <% else %>
       <%= column_chart Bundle.joins(:order).group_by_month(:order_date, format: "%b").sum(:price) %>
     <% end %>
