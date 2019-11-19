@@ -10,9 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2019_11_19_092021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "bundles", force: :cascade do |t|
+    t.integer "quantity"
+    t.bigint "product_id"
+    t.bigint "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_bundles_on_order_id"
+    t.index ["product_id"], name: "index_bundles_on_product_id"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "country"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.date "order_date"
+    t.bigint "customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "product_code"
+    t.string "product_description"
+    t.integer "unit_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "bundles", "orders"
+  add_foreign_key "bundles", "products"
+  add_foreign_key "orders", "customers"
 end
