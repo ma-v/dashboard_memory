@@ -1,12 +1,15 @@
 class PagesController < ApplicationController
   def home
+    #Filter
+    @countries = Customer.distinct.pluck(:country)
+
     # Total Revenue
-    @revenue = Bundle.total_revenue
+    @revenue = Bundle.sum(:price)
 
     # Avg rev per order
-    @arpo = @revenue / Order.size
+    @arpo = @revenue / Order.count
 
     #Total Customers
-    @customers = Customer.size
+    @customers = Customer.count
   end
 end

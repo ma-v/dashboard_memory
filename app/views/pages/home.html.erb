@@ -1,7 +1,9 @@
 <div class="container">
   <div class="country-filter">
     <h1>Country</h1>
-    <div class="filter">Filter</div>
+    <div class="filter">
+      <%= f.input :country, :as => :select, :collection => @countries, :label_method => :format_name, :value_method => :id %>
+    </div>
   </div>
   <div class="summary">
     <h1>Summary</h1>
@@ -29,6 +31,5 @@
   <div class="monthly">
     <h1>Revenue per Month</h1>
     <%= column_chart Order.group_by_month(:order_date, format: "%b").count %>
-    <%# column_chart Order.group_by_month(:order_date, format: "%a").map {|order| order.revenue}.inject(0){|sum,x| sum + x } %>
   </div>
 </div>
