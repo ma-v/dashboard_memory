@@ -5,6 +5,7 @@ class PagesController < ApplicationController
 
     # Total Revenue
     @revenue = Bundle.sum(:price)
+    @revenue = Bundle.joins(:customer).where(customer: {country: "France"}).sum(:price) if params[:country].present?
 
     # Avg rev per order
     @arpo = @revenue / Order.count

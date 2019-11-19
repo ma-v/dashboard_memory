@@ -1,7 +1,10 @@
-.country-filter {
+.container {
   display: flex;
+  flex-direction: column;
+  div {
+    padding: 10px;
+  }
 }
-
 .summary-cards {
   display: flex;
   justify-content: space-around;

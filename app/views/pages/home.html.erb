@@ -2,7 +2,10 @@
   <div class="country-filter">
     <h1>Country</h1>
     <div class="filter">
-      <%= f.input :country, :as => :select, :collection => @countries, :label_method => :format_name, :value_method => :id %>
+      <%= form_tag root_path, method: :get do %>
+        <%= select_tag :country, options_for_select(@countries, "All") %>
+        <%= submit_tag "Filter", class: "btn btn-primary" %>
+      <% end %>
     </div>
   </div>
   <div class="summary">
@@ -30,6 +33,6 @@
   </div>
   <div class="monthly">
     <h1>Revenue per Month</h1>
-    <%= column_chart Order.group_by_month(:order_date, format: "%b").count %>
+    <%= column_chart Bundle.joins(:order).group_by_month(:order_date, format: "%b").sum(:price) %>
   </div>
 </div>
