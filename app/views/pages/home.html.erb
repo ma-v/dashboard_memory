@@ -1,20 +1,20 @@
 <div class="container">
   <div class="country-filter">
-    <h1>Country</h1>
+    <h2>Country</h2>
     <div class="filter">
       <%= form_tag root_path, method: :get do %>
-        <%= select_tag :country, options_for_select(@countries.unshift("All"), @country) %>
-        <%= submit_tag "Filter", class: "btn btn-primary" %>
+        <%= select_tag :country, options_for_select(@countries.unshift("All"), @country), {class: "form-control"} %>
+        <%= submit_tag "Filter", class: "btn btn-primary mt-2" %>
       <% end %>
     </div>
   </div>
   <div class="summary">
-    <h1>Summary</h1>
+    <h2>Summary</h2>
     <div class="summary-cards">
       <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">Revenue</h5>
-          <h1 class="card-figure">
+          <h2 class="card-figure">
             <% if @revenue.length < 4 %>
               <%= @revenue.to_i %> €
             <% elsif @revenue.length < 7 %>
@@ -22,13 +22,13 @@
             <% elsif @revenue.length < 4 %>
               <%= @revenue[0...-2].to_f / 10 %> M €
             <% end %>
-          </h1>
+          </h2>
         </div>
       </div>
       <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">Avg Rev / Order</h5>
-          <h1 class="card-figure">
+          <h2 class="card-figure">
             <% if @arpo.length < 4 %>
               <%= @arpo.to_i %> €
             <% elsif @arpo.length < 7 %>
@@ -36,13 +36,13 @@
             <% elsif @arpo.length < 4 %>
               <%= @arpo[0...-2].to_f / 10 %> M €
             <% end %>
-          </h1>
+          </h2>
         </div>
       </div>
       <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">Customers</h5>
-          <h1 class="card-figure">
+          <h2 class="card-figure">
             <% if @customers.length < 4 %>
               <%= @customers.to_i %>
             <% elsif @customers.length < 7 %>
@@ -50,15 +50,15 @@
             <% elsif @customers.length < 4 %>
               <%= @customers[0...-2].to_f / 10 %> M
             <% end %>
-          </h1>
+          </h2>
         </div>
       </div>
     </div>
   </div>
   <div class="monthly">
-    <h1>Revenue per Month</h1>
+    <h2>Revenue per Month</h2>
     <% if @country && @country != "All" %>
-      <%= column_chart @bundle.joins(:order).group_by_month("orders.order_date", format: "%b").sum(:price) %>
+      <%= column_chart @bundle.joins(:order).group_by_month("orders.order_date", format: "%b").sum(:price), colors: ["#039891"] %>
     <% else %>
       <%= column_chart Bundle.joins(:order).group_by_month(:order_date, format: "%b").sum(:price) %>
     <% end %>
