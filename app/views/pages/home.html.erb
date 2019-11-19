@@ -60,7 +60,7 @@
     <% if @country && @country != "All" %>
       <%= column_chart @bundle.joins(:order).group_by_month("orders.order_date", format: "%b").sum(:price), colors: ["#039891"] %>
     <% else %>
-      <%= column_chart Bundle.joins(:order).group_by_month(:order_date, format: "%b").sum(:price) %>
+      <%= column_chart Bundle.joins(:order).group_by_month(:order_date, format: "%b").sum(:price), colors: ["#039891"] %>
     <% end %>
   </div>
 </div>
