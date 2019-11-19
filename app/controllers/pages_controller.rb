@@ -1,15 +1,12 @@
 class PagesController < ApplicationController
   def home
-    @bundles = Bundle.all
-    @products = Product.all
-    @customers = Customer.all
-    @orders = Order.all
-
     # Total Revenue
-    bundle_revenue_array = @bundles.map {|bundle| bundle.quantity * bundle.product.unit_price}
-    @revenue = bundle_revenue_array.inject(0){|sum,x| sum + x }
+    @revenue = Bundle.total_revenue
 
     # Avg rev per order
-    @arpo = @revenue / Order.count
+    @arpo = @revenue / Order.size
+
+    #Total Customers
+    @customers = Customer.size
   end
 end

@@ -9,24 +9,26 @@
       <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">Revenue</h5>
-          <h1 class="card-figure"><%= @revenue %></h1>
+          <h1 class="card-figure"><%= @revenue %> €</h1>
         </div>
       </div>
       <div class="card" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title"><%= @arpo %></h5>
-          <h1 class="card-figure">XXX €</h1>
+          <h5 class="card-title">Avg Rev / Order</h5>
+          <h1 class="card-figure"><%= @arpo %> €</h1>
         </div>
       </div>
       <div class="card" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title"><%= @customers.count %></h5>
-          <h1 class="card-figure">XXX €</h1>
+          <h5 class="card-title">Customers</h5>
+          <h1 class="card-figure"><%= @customers %></h1>
         </div>
       </div>
     </div>
   </div>
   <div class="monthly">
     <h1>Revenue per Month</h1>
+    <%= column_chart Order.group_by_month(:order_date, format: "%b").count %>
+    <%# column_chart Order.group_by_month(:order_date, format: "%a").map {|order| order.revenue}.inject(0){|sum,x| sum + x } %>
   </div>
 </div>
