@@ -3,8 +3,8 @@
     <h2>Country</h2>
     <div class="filter">
       <%= form_tag root_path, method: :get do %>
-        <%= select_tag :country, options_for_select(@countries.unshift("All"), @country), {class: "form-control"} %>
-        <%= submit_tag "Filter", class: "btn btn-primary mt-2" %>
+        <%= select_tag :country, options_for_select(@countries.unshift("All"), @country), {class: "form-control", onchange: 'this.form.submit()'} %>
+        <%# submit_tag "Filter", class: "btn btn-primary mt-2" %>
       <% end %>
     </div>
   </div>
@@ -15,13 +15,7 @@
         <div class="card-body">
           <h5 class="card-title">Revenue</h5>
           <h2 class="card-figure">
-            <% if @revenue.length < 4 %>
-              <%= @revenue.to_i %> €
-            <% elsif @revenue.length < 7 %>
-              <%= @revenue[0...-2].to_f / 10 %> K €
-            <% elsif @revenue.length < 4 %>
-              <%= @revenue[0...-2].to_f / 10 %> M €
-            <% end %>
+            <%= @revenue %> €
           </h2>
         </div>
       </div>
@@ -29,13 +23,7 @@
         <div class="card-body">
           <h5 class="card-title">Avg Rev / Order</h5>
           <h2 class="card-figure">
-            <% if @arpo.length < 4 %>
-              <%= @arpo.to_i %> €
-            <% elsif @arpo.length < 7 %>
-              <%= @arpo[0...-2].to_f / 10 %> K €
-            <% elsif @arpo.length < 4 %>
-              <%= @arpo[0...-2].to_f / 10 %> M €
-            <% end %>
+            <%= @arpo %> €
           </h2>
         </div>
       </div>
@@ -43,13 +31,7 @@
         <div class="card-body">
           <h5 class="card-title">Customers</h5>
           <h2 class="card-figure">
-            <% if @customers.length < 4 %>
-              <%= @customers.to_i %>
-            <% elsif @customers.length < 7 %>
-              <%= @customers[0...-2].to_f / 10 %> K
-            <% elsif @customers.length < 4 %>
-              <%= @customers[0...-2].to_f / 10 %> M
-            <% end %>
+            <%= @customers %>
           </h2>
         </div>
       </div>
