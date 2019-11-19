@@ -1,2 +1,32 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+  <div class="country-filter">
+    <h1>Country</h1>
+    <div class="filter">Filter</div>
+  </div>
+  <div class="summary">
+    <h1>Summary</h1>
+    <div class="summary-cards">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Revenue</h5>
+          <h1 class="card-figure"><%= @revenue %></h1>
+        </div>
+      </div>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"><%= @arpo %></h5>
+          <h1 class="card-figure">XXX €</h1>
+        </div>
+      </div>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"><%= @customers.count %></h5>
+          <h1 class="card-figure">XXX €</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="monthly">
+    <h1>Revenue per Month</h1>
+  </div>
+</div>

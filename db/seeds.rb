@@ -9,7 +9,7 @@ Product.destroy_all
 puts 'Creating Instances'
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'memory-tech-challenge-data.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-csv[0..20].each do |row|
+csv.each do |row|
   customer = Customer.where(customer_id: row['customer_id']).first_or_initialize
   customer.country = row['country']
   customer.save
@@ -27,7 +27,6 @@ csv[0..20].each do |row|
   bundle.order = order
   bundle.product = product
   bundle.save
-  puts "saved"
 end
 
 puts "#{Customer.count} customers created, #{Product.count} products created, #{Bundle.count} bundles created, #{Order.count} orders created "
