@@ -1,10 +1,10 @@
 require 'csv'
 
 puts 'Cleaning database...'
-Bundle.destroy_all
-Order.destroy_all
-Customer.destroy_all
-Product.destroy_all
+Bundle.delete_all
+Order.delete_all
+Customer.delete_all
+Product.delete_all
 
 puts 'Creating Instances'
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'memory-tech-challenge-data.csv'))
