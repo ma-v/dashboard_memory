@@ -6,7 +6,7 @@ class PagesController < ApplicationController
 
     #Format numbers
     def round_number(number)
-      num = number.to_s
+      num = number.round.to_s
       if num.length < 4
         return num
       elsif num.length < 7
