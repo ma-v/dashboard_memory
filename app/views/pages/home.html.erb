@@ -3,7 +3,7 @@
     <h2>Country</h2>
     <div class="filter">
       <%= form_tag root_path, method: :get do %>
-        <%= select_tag :country, options_for_select(@countries.unshift("All"), @country), {class: "form-control", onchange: 'this.form.submit()'} %>
+        <%= select_tag :country, options_for_select(@countries.sort.unshift("All"), @country), {class: "form-control", onchange: 'this.form.submit()'} %>
         <%# submit_tag "Filter", class: "btn btn-primary mt-2" %>
       <% end %>
     </div>
